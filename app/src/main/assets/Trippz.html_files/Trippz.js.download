@@ -1,0 +1,36 @@
+
+const canvas = document.getElementById("gameCanvas");
+
+let ctx;
+ctx = canvas.getContext("2d");
+let totalCount = 0;
+let keys = {87:false,83:false,68:false, 65 :false};
+
+
+let Axis = new Vector2(0,0);
+//my shit..
+let Camera = new camera(0,0,70);
+let player = new Player(canvas.clientWidth/2,canvas.clientHeight/2,false,"WCTOPDOWNSKULL.png");
+
+let enemies = [];
+
+enemies.length = 10;
+for(let p = 0; p < enemies.length; p++)
+{
+    enemies[p] =  new gameObject(canvas.clientWidth/2+(p*100),canvas.clientHeight/2+100,false,"WCTOPDOWN.png");
+}
+
+let time = 0;
+let frameRateTimer =0.05;
+let frameRateTimeMax = 0.05;
+let date = new Date();
+let elapsedTime = 0;
+
+// random generation
+
+//innit
+//sets up all or stuff for game
+
+gameLoop();
+
+

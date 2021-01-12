@@ -1,0 +1,18 @@
+function Input(){
+    //input
+
+    window.addEventListener('keyup',(input)=>{
+        for (let keysKey in keys) {
+            keys[keysKey] = false;
+
+        }
+    });
+
+    window.addEventListener('keydown',(input)=>{
+            keys[input.keyCode] = true;
+
+    });
+
+
+
+}

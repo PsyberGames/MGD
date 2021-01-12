@@ -1,0 +1,14 @@
+canvas{
+    align-content: center;
+    position: center;
+    width: 100%;
+    height: 100%;
+    border: #333231 40px solid ;
+    border-left-width: 40px;
+    border-right-width: 40px;
+    background-image: url("https://img.craftpix.net/2019/04/Summer-Farm-Top-Down-2D-Game-Tileset3.jpg");
+    background-size: 100% 100%;
+    display: block;
+    margin: 0 auto;
+
+}

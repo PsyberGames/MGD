@@ -1,0 +1,89 @@
+function gameLoop(){
+//game loop
+    Input();
+
+    if(keys[87] === true)
+    {
+        Axis.y = -1;
+
+            time++;
+
+
+        if(time === 4)
+        {
+            time = 0;
+            player.gameObject.animationUpdate(player.gameObject.spriteHeight, player.gameObject.spriteWidth, 9);
+        }
+
+
+
+    }
+
+    if(keys[83] === true)
+    {
+        Axis.y = 1;
+
+            time++;
+
+        if(time === 4) {
+            time = 0;
+            player.gameObject.animationUpdate(0, player.gameObject.spriteWidth, 9);
+        }
+    }
+
+    if(keys[65] === true)
+    {
+        Axis.x = -1;
+
+            time++;
+
+        if(time === 4) {
+            time = 0;
+            player.gameObject.animationUpdate(player.gameObject.spriteHeight * 2, player.gameObject.spriteWidth, 9);
+        }
+    }
+
+    if(keys[68] === true)
+    {
+
+        Axis.x = 1;
+
+            time++;
+
+    if(time === 4)
+    {
+        time = 0;
+        player.gameObject.animationUpdate(player.gameObject.spriteHeight*3,player.gameObject.spriteWidth,9);
+    }
+
+
+
+
+    }
+
+    if(keys[32] === true )
+    {
+        console.debug("fire a rocket FIRE FIRE FIRE!");
+
+    }
+
+    if(Axis.x != 0 || Axis.y != 0)
+    {
+        player.gameObject.Velocity= new Vector2(Axis.x,Axis.y);
+        player.gameObject.update();
+        Axis.x = 0;
+        Axis.y = 0;
+    }
+    for(let p = 0; p < enemies.length; p++)
+    {
+        enemies[p].update();
+    }
+
+    Camera.x = player.gameObject.Position.x;
+    Camera.y = player.gameObject.Position.y;
+
+    Camera.update();
+    window.requestAnimationFrame(gameLoop);
+
+
+}

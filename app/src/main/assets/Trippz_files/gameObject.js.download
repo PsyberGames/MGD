@@ -1,0 +1,54 @@
+class gameObject{
+constructor(xpos,ypos,canMove,sourceImage)
+{
+    //game objects
+    //this .positon
+    this.Position =  new Vector2(xpos,ypos);
+    //is the gameobject a static gameobject
+    this.canMove = canMove;
+    //image of the game object
+    this.sourceImage = new Image(96,96);
+    this.sourceImage.src = sourceImage;
+    //needing implementing in the constructor
+    this.spriteOriginX = 0;
+    this.spriteOriginY = 128;
+    this.spriteWidth = 128;
+    this.spriteHeight = 128;
+    this.Velocity = new Vector2(0,0);
+
+}
+
+    animationUpdate(spriteHeight, spriteWidth,cellCount)
+    {
+
+        //set the sprite row location 1 2 3 4 or in compute logic 0 1 2 3
+        this.spriteOriginY = spriteHeight;
+
+        //moving the cell location to the next cell in the animation
+        this.spriteOriginX +=spriteWidth;
+        //if the cell location is  greater than the spritesheet cell size reset back to first cell
+        if(this.spriteOriginX > spriteWidth*cellCount)
+        {
+            this.spriteOriginX = 0;
+        }
+    }
+
+    update(){
+    this.Position = new Vector2(this.Position.x +this.Velocity.x,this.Position.y +this.Velocity.y);
+    this.draw(ctx);
+
+    }
+
+    draw(ctx) {
+        //ctx.drawImage(this.sourceImage,this.Position.x,this.Position.y);
+        //ctx.draw(this.sourceImage,50,50,this.Position.x,this.Position.y,50,50);
+        // is 400 is the width of a cell
+        // is 400 is the height of a cell
+        //0 is the origin width  of the sprite to draw from the imagesource
+        //100 is the origin height of the sprite to draw from the imagesource
+        //450 is the sprite width
+        //450 is the sprite height
+        ctx.drawImage(this.sourceImage,this.spriteOriginX, this.spriteOriginY, this.spriteWidth, this.spriteHeight, this.Position.x, this.Position.y, this.sourceImage.width, this.sourceImage.height);
+
+    }
+}
