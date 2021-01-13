@@ -14,14 +14,19 @@ function Input(){
     });
     window.addEventListener("mousemove", (axis)=>{
         
-       mAxis = axis;
+       //mAxis = axis;
+       //mouseObject.Position = mAxis;
        
         
     });
+
     window.addEventListener("touchstart", (touch)=>{
+        TCHES["0"] = true;
     if(touch === true)
     {
-        
+        touchObj = touch.touches[0];
+        mouseObject.Position = touch;
+
         if(touches != 2)
         {
             touches +=1;
@@ -29,12 +34,26 @@ function Input(){
 
     }
     });
+
+
+    window.addEventListener("touchmove", (touchMove)=>{
+
+    mAxis = new Vector2((touchMove.touches[0].clientX-canvas.getBoundingClientRect().left), (touchMove.touches[0].clientY-canvas.getBoundingClientRect().top));
+    mouseObject.Position = new Vector2(mAxis.x,mAxis.y);
+    touchObj.Position = mouseObject.Position;
+
+    });
+
     window.addEventListener("touchend", (touch)=>{
+        touch.preventDefault();
+        TCHES["0"] = false;
         if(touch === true)
         {
+            touch.preventDefault();
             if(touches != 0)
             {
                 touches -=1;
+
             }
         }
     });

@@ -16,9 +16,17 @@ var lfBUTTON = new button("./UpButton.png",0+75,550);
 buttonArray.push(lfBUTTON);
 var rtBUTTON = new button("./UpButton.png",0+225,550);
 buttonArray.push(rtBUTTON);
+
+var ctrlStick = new AnalogStick();
+var hRatio = canvas.clientWidth / window.innerWidth;
+var vRatio = canvas.clientHeight/ window.innerHeight;
+var ratio = Math.min(hRatio,vRatio);
+
 let player = new Player(canvas.clientWidth/2,canvas.clientHeight/2,false,"MGDcharacter.png");
 let totalCount = 0;
 let keys = {87:false,83:false,68:false, 65 :false};
+let TCHES = {0 : false, 2 : true, 2 : false}
+let touchObj = new gameObject(0,0,1,"./ControlStick.png");
 let touches = 0;
 let mButtons = {0:false, 2:false};
 let mAxis = new Vector2(0,0);
@@ -30,7 +38,9 @@ let Axis = new Vector2(0,0);
 //my shit..
 let Camera = new camera(0,0,70);
 var mouseObject = new gameObject(mAxis.x,mAxis.y ,1,"./UpButton.png");
-
+mouseObject.sourceImage.width = 16;
+mouseObject.sourceImage.height = 16;
+let dXYpos = new Vector2( 0 ,0);
 
 let enemies = [];
 

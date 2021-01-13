@@ -24,8 +24,14 @@ class camera{
             buttonArray[1].draw(ctx);
             buttonArray[2].draw(ctx);
             buttonArray[3].draw(ctx);
-        
-        mouseObject.draw(ctx);
+            ctrlStick.draw(ctx);
+            ctrlStick.controlStick.draw(ctx);
+
+            if(TCHES[0])
+            {
+                mouseObject.draw(ctx);
+            }
+
         //UI
     }
 }
