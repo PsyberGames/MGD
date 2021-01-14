@@ -1,4 +1,8 @@
 function gameLoop(){
+//console.log(player.healthpool);
+
+
+
 
     //now time
 moving = moveX+moveY;
@@ -10,11 +14,14 @@ BG.spriteWidth = 1280;
 BG.sourceImage.height = canvas.getBoundingClientRect().height;
 BG.spriteHeight = 1024;
 
-
-
+   // console.log(TCHES[1]);
+   // console.log(TCHES[2]);
 //game loop
-
-    if(touches > 0 || TCHES[0])
+    if( (keys[65]== true || keys[68] == true  || keys[87] == true || keys[83] == true) && moving !=0 )
+    {
+        time++;
+    }
+    if(touches > 0 || TCHES[0] || TCHES[1])
     {
         var a = buttonArray[0].butCheck(buttonArray[0],touchObj);
         
@@ -54,13 +61,16 @@ BG.spriteHeight = 1024;
             console.debug("this is now working ")
         }
 
-        var a = ctrlStick.butCheck(ctrlStick,mouseObject);
-
-        if((a == "t" || a == "b" || a == "l" || a == "r"))
+        a = ctrlStick.butCheck(ctrlStick,mouseObject);
+        var b = ctrlStick2.butCheck(ctrlStick2,mouseObject);
+        if(a = ctrlStick.butCheck(ctrlStick,mouseObject))
         {
-            moving = true;
-            time++;
-            //console.debug(a);
+
+            if((a == "t" || a == "b" || a == "l" || a == "r"))
+            {
+                moving = true;
+                time++;
+                //console.debug(a);
 
                 ctrlStick.controlStick.Position = mouseObject.Position;
 
@@ -128,10 +138,81 @@ BG.spriteHeight = 1024;
 
 
 
-        }else{
-            ctrlStick.controlStick.Position = ctrlStick.centre;
-            moving = false;
+            }else{
+                ctrlStick.controlStick.Position = ctrlStick.centre;
+                moving = false;
+            }
+
+        }else if(b = ctrlStick2.butCheck(ctrlStick2,mouseObject)){
+
+            if((b == "t" || b == "b" || b == "l" || b == "r"))
+            {
+
+
+                ctrlStick2.controlStick.Position = mouseObject.Position;
+
+
+                if(mouseObject.Position.x < ctrlStick2.centre.x)
+                {
+                    if(mouseObject.Position.y > ctrlStick2.centre.y)
+                    {
+                        dXYpos2.x = mouseObject.Position.x - ctrlStick2.centre.x;
+                        dXYpos2.y = mouseObject.Position.y - ctrlStick2.centre.y
+                        //console.log(dXYpos.x);
+                        //console.log("we are on the left side of the boundaries shoot left");
+                        dXYpos2.Normalize();
+                        dXYpos2.Vec2Length();
+
+                    }
+                    if(mouseObject.Position.y < ctrlStick2.centre.y)
+                    {
+                        dXYpos2.x = mouseObject.Position.x - ctrlStick2.centre.x;
+                        dXYpos2.y = mouseObject.Position.y - ctrlStick2.centre.y
+                        //console.log(dXYpos.x);
+                        //console.log("we are on the left side of the boundaries shoot left");
+                        dXYpos2.Normalize();
+                        dXYpos2.Vec2Length();
+
+                    }
+
+                    console.debug(dXYpos);
+                }
+                if(mouseObject.Position.x > ctrlStick2.centre.x)
+                {
+                    if(mouseObject.Position.y > ctrlStick2.centre.y)
+                    {
+                        dXYpos2.x = mouseObject.Position.x - ctrlStick2.centre.x;
+                        dXYpos2.y = mouseObject.Position.y - ctrlStick2.centre.y
+                        //console.log(dXYpos.x);
+                        //console.log("we are on the left side of the boundaries shoot left");
+                        dXYpos2.Normalize();
+                        dXYpos2.Vec2Length();
+
+                    }
+                    if(mouseObject.Position.y < ctrlStick2.centre.y)
+                    {
+                        dXYpos2.x = mouseObject.Position.x - ctrlStick2.centre.x;
+                        dXYpos2.y = mouseObject.Position.y - ctrlStick2.centre.y
+                        //console.log(dXYpos.x);
+                        //console.log("we are on the left side of the boundaries shoot left");
+                        dXYpos2.Normalize();
+                        dXYpos2.Vec2Length();
+
+                    }
+
+
+                    console.debug(dXYpos2);
+                }
+
+
+
+            }else{
+                ctrlStick2.controlStick.Position = ctrlStick2.centre;
+                moving = false;
+            }
         }
+
+
 
 
 
@@ -147,14 +228,14 @@ BG.spriteHeight = 1024;
     }
     if(keys[87] === true)
     {
-        Axis.y = -1.0;
+        Axis.y = -2.0;
         moveY  = 2;
         cellPlaceNumber = player.gameObject.spriteHeight;
     }
 
     if(keys[83] === true)
     {
-        Axis.y = 1.0;
+        Axis.y = 2.0;
         moveY = 2;
         cellPlaceNumber =0;
     }
@@ -167,14 +248,14 @@ BG.spriteHeight = 1024;
     }
     if(keys[68] === true)
     {
-        Axis.x = 1.0;
+        Axis.x = 2.0;
         moveX = 2;
         cellPlaceNumber = player.gameObject.spriteHeight*3;
     }
 
     if(keys[65] === true)
     {
-        Axis.x = -1.0;
+        Axis.x = -2.0;
         moveX =2;
         cellPlaceNumber = player.gameObject.spriteHeight * 2;
     }
@@ -182,20 +263,18 @@ BG.spriteHeight = 1024;
     {
         var collider = enemies[e].colCheck(enemies[e],player);
         if (collider === "l" || collider === "r") {
-            Axis.x = 0;
-            moveX = 0;
+            //playercollision
+            //Axis.x = 0;
+            //moveX = 0;
         } else if(collider === "t" || collider === "b"){
-            Axis.y = 0;
-            moveY = 0;
+            //Axis.y = 0;
+            //moveY = 0;
         }else{
 
         }
     }
     
-    if( (keys[65]== true || keys[68] == true  || keys[87] == true || keys[83] == true) && moving !=0 )
-    {
-        time++;
-    }
+
 
 
 
@@ -212,23 +291,29 @@ BG.spriteHeight = 1024;
         Axis.y = 0;
 
     }
-
-
     for(let p = 0; p < enemies.length; p++)
     {
 
+
+
+
+
+        enemies[p].AI();
         enemies[p].update();
         if(time === 4)
         {
             for( let e = 0; e <enemies.length; e++)
             {
                 enemies[e].animationUpdate(64,64,9)*elapsedTime;
+
                 time = 0;
             }
 
         }
 
     }
+
+
 
     Camera.x = player.gameObject.Position.x;
     Camera.y = player.gameObject.Position.y;

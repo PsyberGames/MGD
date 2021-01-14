@@ -75,6 +75,14 @@ constructor(xpos,ypos,canMove,sourceImage)
     if(this != player.gameObject)
     {
         this.objectAnimTime+=1;
+        if(this.Velocity.x > .8)
+        {
+            this.Velocity.x = .8;
+        }
+        if(this.Velocity.y > .8)
+        {
+            this.Velocity.y = .8;
+        }
     }
 
     this.Position = new Vector2(this.Position.x +this.Velocity.x,this.Position.y +this.Velocity.y);

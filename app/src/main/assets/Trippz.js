@@ -33,7 +33,7 @@ let BG = new gameObject(0,0,0,"./BGDIGI.png");
 let player = new Player(canvas.clientWidth/2,canvas.clientHeight/2,false,"MGDcharacter.png");
 let totalCount = 0;
 let keys = {87:false,83:false,68:false, 65 :false};
-let TCHES = {0 : false, 2 : true, 2 : false}
+let TCHES = {0 : false, 1 : false, 2 : false}
 let touchObj = new gameObject(0,0,1,"./ControlStick.png");
 let touches = 0;
 let mButtons = {0:false, 2:false};
@@ -49,13 +49,26 @@ var mouseObject = new gameObject(mAxis.x,mAxis.y ,1,"./UpButton.png");
 mouseObject.sourceImage.width = 16;
 mouseObject.sourceImage.height = 16;
 let dXYpos = new Vector2( 0 ,0);
+let dXYpos2 = new Vector2( 0 ,0);
 
 let enemies = [];
 
-enemies.length = 10;
+enemies.length = 20;
 for(let p = 0; p < enemies.length; p++)
 {
-    enemies[p] =  new gameObject(200+(p*100),canvas.clientHeight/2+50,false,"FragClust.png");
+    if(p/3> 2)
+    {
+        enemies[p] =  new Enemey(0,0 ,false,"FragClust.png");
+        enemies[p].Position = new Vector2(1+32*p,1+32*p );
+    }else if(p/2 > 1)
+    {
+        enemies[p] =  new Enemey(0,0 ,false,"CorrupCell.png");
+        enemies[p].Position = new Vector2(1+32*p,1+32*p );
+    }else{
+        enemies[p] =  new Enemey(0,0 ,false,"MemLeak.png");
+        enemies[p].Position = new Vector2(1+32*p,1+32*p );
+    }
+
 }
 let cellPlaceNumber = 0;
 let time = 0;

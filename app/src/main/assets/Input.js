@@ -22,7 +22,15 @@ function Input(){
 
     window.addEventListener("touchstart", (touch)=>{
         //touch.preventDefault();
-        TCHES["0"] = true;
+console.log(touch.touches.length);
+            for(let i = 0; i < touch.touches.length; i ++)
+            {
+                TCHES[i] = true;
+                console.log(TCHES[i])
+            }
+
+
+
     if(touch === true)
     {
         touchObj = touch.touches[0];
@@ -59,7 +67,20 @@ function Input(){
 
     window.addEventListener("touchend", (touch)=>{
         touch.preventDefault();
-        TCHES["0"] = false;
+
+        if(TCHES[0] == true)
+        {
+            TCHES[0] = false;
+        }
+        if(TCHES[1] == true)
+        {
+            TCHES[1] = false;
+        }
+        if(TCHES[2] == true)
+        {
+            TCHES[2] = false;
+        }
+
         if(touch === true)
         {
             touch.preventDefault();
