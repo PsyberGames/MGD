@@ -21,11 +21,12 @@ function Input(){
     });
 
     window.addEventListener("touchstart", (touch)=>{
+        //touch.preventDefault();
         TCHES["0"] = true;
     if(touch === true)
     {
         touchObj = touch.touches[0];
-        mouseObject.Position = touch;
+        mouseObject.Position = touchObj.Position;
 
         if(touches != 2)
         {
@@ -36,10 +37,22 @@ function Input(){
     });
 
 
-    window.addEventListener("touchmove", (touchMove)=>{
+    canvas.addEventListener("touchmove", (touchMove)=>{
 
-    mAxis = new Vector2((touchMove.touches[0].clientX-canvas.getBoundingClientRect().left), (touchMove.touches[0].clientY-canvas.getBoundingClientRect().top));
-    mouseObject.Position = new Vector2(mAxis.x,mAxis.y);
+    touchMove.preventDefault();
+    //getComputedStyle(canvas).left;
+    var cRct = canvas.getBoundingClientRect();
+
+
+    let tPos = touchMove.touches[0];
+    console.log(tPos);
+
+    let AR = canvas.offsetHeight/canvas.offsetWidth;
+
+        mAxis = new Vector2(touchMove.touches[0].pageX, (touchMove.touches[0].pageY));
+
+        console.log(mAxis.x);
+    mouseObject.Position = mAxis;
     touchObj.Position = mouseObject.Position;
 
     });

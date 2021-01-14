@@ -1,24 +1,25 @@
 class AnalogStick extends gameObject{
-constructor(){
+constructor( x, y){
     
-    super(canvas.clientWidth/1.03 ,canvas.clientHeight/1.33,1,"./UpButton.png");
+    super(x ,y,1,"./UpButton.png");
     this.innnerPosition = new Vector2(this.spriteWidth/2,this.spriteHeight/2);
-    this.centre = new Vector2(canvas.clientWidth/1.03 ,canvas.clientHeight/1.33);
+    this.centre = new Vector2(x,y);
     
     this.controlStick = new gameObject(this.centre.x,this.centre.y,1,"./ControlStick.png");
 
-    
+    this.isControlstickCentre = new Vector2(this.controlStick.Position.x - this.controlStick.spriteWidth/2, this.controlStick.Position.y - this.controlStick.spriteHeight/2 );
 
 }
     
 butCheck(shapeA, shapeB) {
     // get the vectors to check against
 
-    var vX = (shapeA.Position.x + (shapeA.spriteWidth / 4)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
-        vY = (shapeA.Position.y + (shapeA.spriteHeight / 4)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
+
+    var vX = (shapeA.Position.x + (shapeA.spriteWidth / 2)) - (shapeB.Position.x + (shapeB.spriteWidth / 2)),
+        vY = (shapeA.Position.y + (shapeA.spriteHeight / 2)) - (shapeB.Position.y + (shapeB.spriteHeight / 2)),
         // add the half widths and half heights of the objects
-        hWidths = (shapeA.spriteWidth / 4) + (shapeB.spriteWidth / 4),
-        hHeights = (shapeA.spriteHeight / 4) + (shapeB.spriteHeight / 4),
+        hWidths = (shapeA.spriteWidth / 2) + (shapeB.spriteWidth / 2),
+        hHeights = (shapeA.spriteHeight / 2) + (shapeB.spriteHeight / 2),
         colDir = null;
 
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision

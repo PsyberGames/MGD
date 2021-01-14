@@ -2,13 +2,18 @@ function gameLoop(){
 
     //now time
 moving = moveX+moveY;
+ctx.width = window.innerWidth;
+ctx.height = window.innerHeight;
+
+BG.sourceImage.width =canvas.getBoundingClientRect().width;
+BG.spriteWidth = 1280;
+BG.sourceImage.height = canvas.getBoundingClientRect().height;
+BG.spriteHeight = 1024;
+
+
+
 //game loop
-    //mouseObject.Position = new Vector2(mAxis.x - mouseObject.spriteWidth, mAxis.y-mouseObject.spriteHeight);
-    window.innerWidth = canvas.clientWidth;
-    window.innerHeight = canvas.clientHeight;
-    //console.debug(mouseObject.Position);
-    //console.debug(TCHES["0"])
-    //console.debug(buttonArray[0].Position);
+
     if(touches > 0 || TCHES[0])
     {
         var a = buttonArray[0].butCheck(buttonArray[0],touchObj);
@@ -16,7 +21,7 @@ moving = moveX+moveY;
         if((a == "t" || a == "b" || a == "l" || a == "r") && TCHES[0])
         {
             Axis.y = -2.5;
-            moveY  = 1;
+            moveY  = 2;
             cellPlaceNumber = player.gameObject.spriteHeight;
             time++;
             console.debug("this is now working ")
@@ -25,7 +30,7 @@ moving = moveX+moveY;
         if((a == "t" || a == "b" || a == "l" || a == "r") && buttonArray[1])
         {
             Axis.y = 2.5;
-            moveY  = 1;
+            moveY  = 2;
             cellPlaceNumber = 0;
             time++;
             console.debug("this is now working ")
@@ -34,7 +39,7 @@ moving = moveX+moveY;
         if((a == "t" || a == "b" || a == "l" || a == "r") && buttonArray[2])
         {
             Axis.x = -2.5;
-            moveX = 1;
+            moveX = 2;
             cellPlaceNumber = player.gameObject.spriteHeight*2;
             time++;
             console.debug("this is now working ")
@@ -43,7 +48,7 @@ moving = moveX+moveY;
         if((a == "t" || a == "b" || a == "l" || a == "r") && buttonArray[3])
         {
             Axis.x = 2.5;
-            moveX = 1;
+            moveX = 2;
             cellPlaceNumber = player.gameObject.spriteHeight*3;
             time++;
             console.debug("this is now working ")
@@ -57,20 +62,8 @@ moving = moveX+moveY;
             time++;
             //console.debug(a);
 
-                ctrlStick.controlStick.Position = touchObj.Position;
-                let leftOfAnalogBoundary = new Vector2(ctrlStick.Position.x,ctrlStick.Position.y-ctrlStick.spriteHeight/2);
-                let rightOfAnalogBoundary = new Vector2(ctrlStick.Position.x+ctrlStick.spriteWidth,ctrlStick.Position.y+ctrlStick.spriteHeight/2);
-                let topOfAnalogBoundary = new Vector2(ctrlStick.Position.x + ctrlStick.spriteWidth/2, ctrlStick.Position.y - ctrlStick.spriteHeight);
-                let botOfAnalogBoundary = new Vector2(ctrlStick.Position.x + ctrlStick.spriteWidth/2, ctrlStick.Position.y - ctrlStick.spriteHeight);
+                ctrlStick.controlStick.Position = mouseObject.Position;
 
-                let totalRecX = rightOfAnalogBoundary.x - leftOfAnalogBoundary.x;
-                let r = totalRecX/2;
-                //console.log(leftOfAnalogBoundary);
-
-                /*let sinA = leftOfAnalogBoundary.x / Math.hypot(leftOfAnalogBoundary.x,4);
-                let AN = Math.asin(sinA)*180/Math.PI;
-                let x = ctrlStick.centre.x + 32 * Math.cos(AN * Math.PI /180);
-                let y = ctrlStick.centre.y + 32 * Math.sin(AN * Math.PI /180);*/
 
                 if(mouseObject.Position.x < ctrlStick.centre.x)
                 {
@@ -140,8 +133,12 @@ moving = moveX+moveY;
             moving = false;
         }
 
+
+
+
     }else{
         ctrlStick.controlStick.Position = ctrlStick.centre;
+        ctrlStick2.controlStick.Position = ctrlStick2.centre;
     }
     //console.debug(mAxis);
     if(mButtons[0] === true)

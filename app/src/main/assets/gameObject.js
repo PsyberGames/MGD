@@ -91,7 +91,6 @@ constructor(xpos,ypos,canMove,sourceImage)
 
 
     draw(ctx) {
-        this.testVirtual && this.testVirtual();
         //ctx.drawImage(this.sourceImage,this.Position.x,this.Position.y);
         //ctx.draw(this.sourceImage,50,50,this.Position.x,this.Position.y,50,50);
         // is 400 is the width of a cell

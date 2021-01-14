@@ -1,17 +1,11 @@
 body{
     overflow: hidden;
-    
-
     margin: 0px;
 }
 canvas{
-
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: #333231 10px solid;
-    background-image: url("BGDIGI.png");
-    background-size: 100% 100%;
-    
-
+    position:absolute;
+    /* width: 100%; */
+    /* height: 100%; */
 }
+
+canvas#gameCanvas {}

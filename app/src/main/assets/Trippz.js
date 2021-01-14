@@ -4,9 +4,13 @@ var buttonArray = [];
 const canvas = document.getElementById("gameCanvas");
 
 
+
 let ctx;
 ctx = canvas.getContext("2d");
-
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+window.innerWidth= ctx.width;
+window.innerHeight = ctx.height;
 var upBUTTON = new button("./UpButton.png",0+150,500);
 buttonArray.push(upBUTTON);
 
@@ -16,11 +20,15 @@ var lfBUTTON = new button("./UpButton.png",0+75,550);
 buttonArray.push(lfBUTTON);
 var rtBUTTON = new button("./UpButton.png",0+225,550);
 buttonArray.push(rtBUTTON);
+var ctrlStick2 = new AnalogStick(canvas.clientWidth-150,canvas.clientHeight-150);
+var ctrlStick = new AnalogStick(0+100,canvas.clientHeight-150);
 
-var ctrlStick = new AnalogStick();
 var hRatio = canvas.clientWidth / window.innerWidth;
 var vRatio = canvas.clientHeight/ window.innerHeight;
 var ratio = Math.min(hRatio,vRatio);
+
+
+let BG = new gameObject(0,0,0,"./BGDIGI.png");
 
 let player = new Player(canvas.clientWidth/2,canvas.clientHeight/2,false,"MGDcharacter.png");
 let totalCount = 0;
