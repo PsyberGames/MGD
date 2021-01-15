@@ -283,6 +283,17 @@ BG.spriteHeight = 1024;
         moveX =2;
         cellPlaceNumber = player.gameObject.spriteHeight * 2;
     }
+        var TerminalCollider = player.gameObject.colCheck(Terminal,player);
+        if (TerminalCollider === "l" || TerminalCollider === "r") {
+
+            //playercollision
+            Axis.x = 0;
+            moveX = 0;
+        } else if(TerminalCollider === "t" || TerminalCollider=== "b"){
+            Axis.y = 0;
+            moveY = 0;
+        }else{}
+
     for(let e = 0; e < enemies.length; e++)
     {
         var collider = enemies[e].colCheck(enemies[e],player);

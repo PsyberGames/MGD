@@ -53,6 +53,14 @@ let dXYpos2 = new Vector2( 0 ,0);
 
 let EnergyBalls = [];
 EnergyBalls.length = 20;
+let Terminal = new gameObject(0,0,0,"./Terminal.png");
+Terminal.sourceImage.width= 64;
+Terminal.sourceImage.height = 64;
+Terminal.spriteWidth= 128;
+Terminal.spriteHeight = 128;
+
+
+Terminal.Position = new Vector2(canvas.offsetWidth/2 - Terminal.sourceImage.width/2, canvas.offsetHeight/2-Terminal.sourceImage.height/2);
 for(let eb = 0; eb < EnergyBalls.length; eb++)
 {
     EnergyBalls[eb] = new gameObject(100, 100,1,"./EnergyBall.png");

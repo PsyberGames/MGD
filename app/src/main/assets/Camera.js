@@ -20,9 +20,20 @@ class camera{
             //EnergyBalls[eb].update();
             EnergyBalls[eb].draw(ctx);
         }
+        if(Terminal.Position.y < player.gameObject.Position.y+12)
+        {
+            //Terminal.update();
+            Terminal.draw(ctx);
+            //player
+            player.gameObject.draw(ctx);
+        }else{
+            player.gameObject.draw(ctx);
+            //Terminal.update();
+            Terminal.draw(ctx);
+            //player
 
-        //player
-        player.gameObject.draw(ctx);
+        }
+
         //buttonArray[0].draw(ctx);
        
             //buttonArray[1].draw(ctx);
