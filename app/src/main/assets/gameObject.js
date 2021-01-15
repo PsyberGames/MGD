@@ -72,7 +72,7 @@ constructor(xpos,ypos,canMove,sourceImage)
 
     update(){
 
-    if(this != player.gameObject)
+    if(this != player.gameObject )
     {
         this.objectAnimTime+=1;
         if(this.Velocity.x > .8)

@@ -1,9 +1,33 @@
+function Normalized(value,max,min){
+    console.debug((value-min)/(max-min));
+    if((value-min)/(max-min) < -1)
+    {
+        return -1;
+    }else if((value-min)/(max-min) > 1)
+    {
+        return 1;
+    }
+    return (value-min)/(max-min);
+
+}
 function gameLoop(){
 //console.log(player.healthpool);
+console.debug(EnergyBalls[0].Velocity);
 
 
+if(mButtons["0"])
+{
+    let targetDirectionX = mouseObject.Position.x - player.gameObject.Position.x;
+    let targetDirectionY = mouseObject.Position.y - player.gameObject.Position.y;
 
-
+    let targetDirection = new Vector2(Normalized(targetDirectionX,canvas.clientWidth/2,0),Normalized(targetDirectionY,canvas.clientHeight/2,0));
+    EnergyBalls[0].Velocity = new Vector2(targetDirection.x, targetDirection.y);
+        console.debug(targetDirection);
+    EnergyBalls[0].update();
+    //console.debug("fire fire fire");
+}
+    EnergyBalls[0].objectAnimTime = 0;
+    EnergyBalls[0].update();
     //now time
 moving = moveX+moveY;
 ctx.width = window.innerWidth;
@@ -296,7 +320,7 @@ BG.spriteHeight = 1024;
 
 
 
-
+        
 
         enemies[p].AI();
         enemies[p].update();

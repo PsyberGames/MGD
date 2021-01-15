@@ -51,6 +51,20 @@ mouseObject.sourceImage.height = 16;
 let dXYpos = new Vector2( 0 ,0);
 let dXYpos2 = new Vector2( 0 ,0);
 
+let EnergyBalls = [];
+EnergyBalls.length = 20;
+for(let eb = 0; eb < EnergyBalls.length; eb++)
+{
+    EnergyBalls[eb] = new gameObject(100, 100,1,"./EnergyBall.png");
+    //EnergyBalls[eb].Position = new Vector2(2,2);
+    EnergyBalls[eb].spriteWidth = 480;
+    EnergyBalls[eb].spriteHeight = 480;
+    EnergyBalls[eb].sourceImage.width = 24;
+    EnergyBalls[eb].sourceImage.height = 24;
+
+    console.debug(EnergyBalls[eb]);
+}
+
 let enemies = [];
 
 enemies.length = 20;

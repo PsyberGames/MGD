@@ -15,7 +15,7 @@ class Enemey extends gameObject{
             let newPos2 = new Vector2(refactPos21,refactPos22);
             this.distance = (newPos1.x *newPos1.x - newPos2.x*newPos2.x)+(newPos1.y * newPos1.y - newPos2.y*newPos2.y)/(newPos1.x *newPos1.x - newPos2.x*newPos2.x)+(newPos1.y * newPos1.y - newPos2.y*newPos2.y);
 
-            console.log(Math.abs(this.distance/1000) );
+            //console.log(Math.abs(this.distance/1000) );
 
 
 
@@ -25,22 +25,22 @@ class Enemey extends gameObject{
                 if(newPos1.y < newPos2.y)
                 {
                     this.futureVe = new Vector2(Math.random()+ 1*2,1*2);
-                    console.log("enemy is above player");
+                    //console.log("enemy is above player");
                 }else{
                     this.futureVe = new Vector2(1*2,-1*2);
-                    console.log("enemy is below player ");
+                    //console.log("enemy is below player ");
                 }
-                console.log("enemy is left of the player");
+                //console.log("enemy is left of the player");
             }else{
                 if(newPos1.y < newPos2.y)
                 {
                     this.futureVe = new Vector2(Math.random()+-1*2,1*2);
-                    console.log("enemy is above player");
+                    //console.log("enemy is above player");
                 }else{
                     this.futureVe = new Vector2(-1*2,-1*2);
-                    console.log("enemy is below player ");
+                    //console.log("enemy is below player ");
                 }
-                console.log("enemy is right of the player");
+                //console.log("enemy is right of the player");
             }
 
 
@@ -48,13 +48,13 @@ class Enemey extends gameObject{
             {
                 this.Velocity = this.futureVe;
 
-                console.log("not reached player");
+                //console.log("not reached player");
             }
             if(Math.abs(this.distance/1000) <55)
             {
                 this.futureVe += new Vector2(Math.acosh((Math.random()*233.2423)*Math.PI*Math.tanh(Math.PI)),Math.random()*133.3)-66*Math.PI;
                 this.Position = new Vector2(-100,-100);
-                console.log("reach the player ");
+                //console.log("reach the player ");
                 //console.log(newPos2.x);
             }
 

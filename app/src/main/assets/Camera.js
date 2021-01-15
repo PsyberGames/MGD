@@ -8,14 +8,18 @@ class camera{
     update(){
         //bg
 
-        ctx.clearRect(0,0,1366,720);
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
         BG.draw(ctx);
         //objects zone.
         for(let p = 0; p < enemies.length; p++)
         {
             enemies[p].draw(ctx);
         }
-
+        for(let eb= 0; eb < EnergyBalls.length ; eb++)
+        {
+            //EnergyBalls[eb].update();
+            EnergyBalls[eb].draw(ctx);
+        }
 
         //player
         player.gameObject.draw(ctx);
@@ -32,6 +36,7 @@ class camera{
             {
                 mouseObject.draw(ctx);
             }
+        mouseObject.draw(ctx);
 
         //UI
     }

@@ -1,21 +1,21 @@
 function Input(){
     //input
-    window.addEventListener("mousedown", (mouse)=>{
+    canvas.addEventListener("mousedown", (mouse)=>{
         mButtons[mouse.button] = true;
         if(touches < 2) {
             touches += 1;
         }
     });
-    window.addEventListener("mouseup", (mouse)=>{
+    canvas.addEventListener("mouseup", (mouse)=>{
         mButtons[mouse.button] = false;
         if(touches != 0) {
             touches -= 1;
         }
     });
-    window.addEventListener("mousemove", (axis)=>{
+    canvas.addEventListener("mousemove", (axis)=>{
         
-       //mAxis = axis;
-       //mouseObject.Position = mAxis;
+       mAxis = axis;
+       mouseObject.Position = mAxis;
        
         
     });
