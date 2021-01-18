@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         webView = (WebView)findViewById(R.id.webview1);
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/breakoutgame.html");
+        webView.loadUrl("file:///android_asset/index.html");
     }
 
 }

@@ -61,11 +61,18 @@ class Enemey extends gameObject{
                 {
                     this.futureVe += new Vector2(Math.acosh((Math.random()*233.2423)*Math.PI*Math.tanh(Math.PI)),Math.random()*133.3)-66*Math.PI;
                     let ran = Math.random();
-                    if(ran > 0.5)
+                    if(ran < 0.25)
                     {
                         this.Position = new Vector2(-100,-100);
-                    }else{
+
+                    }else if (ran >0.33&& ran <0.66)
+                    {
+
                         this.Position = new Vector2(canvas.offsetWidth+100,canvas.offsetTop-100);
+                    }else
+                    {
+
+                        this.Position = new Vector2(canvas.offsetWidth+100,canvas.offsetHeight+100);
                     }
 
                     //console.log("reach the player ");

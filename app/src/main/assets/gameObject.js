@@ -17,17 +17,19 @@ constructor(xpos,ypos,canMove,sourceImage)
     this.spriteHeight = 64;
     this.Velocity = new Vector2(0,0);
     this.objectAnimTime = 0;
+    this.TargetObj = 0;
 
 }
     colCheck(shapeA, shapeB) {
         // get the vectors to check against
+
         if(shapeA == Terminal)
         {
-            var vX = (shapeA.Position.x + (shapeA.spriteWidth / 6)) - (shapeB.gameObject.Position.x + (shapeB.gameObject.spriteWidth / 4)),
-                vY = (shapeA.Position.y + (shapeA.spriteHeight / 8)) - (shapeB.gameObject.Position.y + (shapeB.gameObject.spriteHeight / 4)),
+            var vX = (shapeA.Position.x + (shapeA.spriteWidth / 6)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
+                vY = (shapeA.Position.y + (shapeA.spriteHeight / 8)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
                 // add the half widths and half heights of the objects
-                hWidths = (shapeA.spriteWidth / 6) + (shapeB.gameObject.spriteWidth / 4),
-                hHeights = (shapeA.spriteHeight / 8) + (shapeB.gameObject.spriteHeight / 4),
+                hWidths = (shapeA.spriteWidth / 6) + (shapeB.spriteWidth / 4),
+                hHeights = (shapeA.spriteHeight / 8) + (shapeB.spriteHeight / 4),
                 colDir = null;
 
             // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
@@ -55,11 +57,11 @@ constructor(xpos,ypos,canMove,sourceImage)
             }
             return colDir;
         }else{
-            var vX = (shapeA.Position.x + (shapeA.spriteWidth / 4)) - (shapeB.gameObject.Position.x + (shapeB.gameObject.spriteWidth / 4)),
-                vY = (shapeA.Position.y + (shapeA.spriteHeight / 4)) - (shapeB.gameObject.Position.y + (shapeB.gameObject.spriteHeight / 4)),
+            var vX = (shapeA.Position.x + (shapeA.spriteWidth / 4)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
+                vY = (shapeA.Position.y + (shapeA.spriteHeight / 4)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
                 // add the half widths and half heights of the objects
-                hWidths = (shapeA.spriteWidth / 4) + (shapeB.gameObject.spriteWidth / 4),
-                hHeights = (shapeA.spriteHeight / 4) + (shapeB.gameObject.spriteHeight / 4),
+                hWidths = (shapeA.spriteWidth / 4) + (shapeB.spriteWidth / 4),
+                hHeights = (shapeA.spriteHeight / 4) + (shapeB.spriteHeight / 4),
                 colDir = null;
 
             // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
@@ -107,8 +109,10 @@ constructor(xpos,ypos,canMove,sourceImage)
     }
 
     update(){
-
-    if(this != player.gameObject )
+    if(this.TargetObj != 0)
+    {
+        this.Position = new Vector2(this.Position.x +this.Velocity.x * 5,this.Position.y +this.Velocity.y * 20);
+    }else if(this != player)
     {
         this.objectAnimTime+=1;
         if(this.Velocity.x > .8)

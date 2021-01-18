@@ -5,8 +5,25 @@ class camera{
         this.y = ypos;
         this.fps = fps;
     }
+    Start(){
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+        BG.draw(ctx);
+        mouseObject.draw(ctx);
+    }
+    GameOver(){
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+        BG.draw(ctx);
+
+        mouseObject.draw(ctx);
+    }
+    MainMenu(){
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+        BG.draw(ctx);
+
+        mouseObject.draw(ctx);
+    }
     update(){
-        //bg
+        //running
 
         ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
         BG.draw(ctx);
@@ -15,19 +32,24 @@ class camera{
         {
             enemies[p].draw(ctx);
         }
-        for(let eb= 0; eb < EnergyBalls.length ; eb++)
+        for(let eb= 0; eb < EnergyBalls.length-1 ; eb++)
         {
             //EnergyBalls[eb].update();
             EnergyBalls[eb].draw(ctx);
         }
-        if(Terminal.Position.y < player.gameObject.Position.y+12)
+        for(let fb= 0; fb < FiredEBList.length-1 ; fb++)
+        {
+            //EnergyBalls[eb].update();
+            FiredEBList[fb].draw(ctx);
+        }
+        if(Terminal.Position.y < player.Position.y+12)
         {
             //Terminal.update();
             Terminal.draw(ctx);
             //player
-            player.gameObject.draw(ctx);
+            player.draw(ctx);
         }else{
-            player.gameObject.draw(ctx);
+            player.draw(ctx);
             //Terminal.update();
             Terminal.draw(ctx);
             //player
@@ -48,7 +70,7 @@ class camera{
                 mouseObject.draw(ctx);
             }
         mouseObject.draw(ctx);
-
+        TerminalHP.draw(ctx);
         //UI
     }
 }

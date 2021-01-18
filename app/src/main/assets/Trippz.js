@@ -2,6 +2,13 @@ let hasDone = false;
 
 var buttonArray = [];
 const canvas = document.getElementById("gameCanvas");
+const _Audio = document.getElementById("SFX");
+const _AudioTheme = document.getElementById("THEME");
+
+let THEME_Main= new Audio("./Theme.mp3");
+THEME_Main.volume = 0.33;
+THEME_Main.autoplay = true;
+
 
 
 
@@ -21,7 +28,7 @@ buttonArray.push(lfBUTTON);
 var rtBUTTON = new button("./UpButton.png",0+225,550);
 buttonArray.push(rtBUTTON);
 var ctrlStick2 = new AnalogStick(canvas.clientWidth-150,canvas.clientHeight-150);
-var ctrlStick = new AnalogStick(0+100,canvas.clientHeight-150);
+var ctrlStick = new AnalogStick(0+150,canvas.clientHeight-150);
 
 var hRatio = canvas.clientWidth / window.innerWidth;
 var vRatio = canvas.clientHeight/ window.innerHeight;
@@ -52,43 +59,47 @@ let dXYpos = new Vector2( 0 ,0);
 let dXYpos2 = new Vector2( 0 ,0);
 
 let EnergyBalls = [];
-EnergyBalls.length = 20;
+let FiredEBList = [];
+EnergyBalls.length = 1000;
 let Terminal = new gameObject(0,0,0,"./Terminal.png");
 Terminal.sourceImage.width= 64;
 Terminal.sourceImage.height = 64;
 Terminal.spriteWidth= 128;
 Terminal.spriteHeight = 128;
+let TerminalHP = new gameObject(canvas.offsetHeight/2,canvas.getBoundingClientRect().bottom-canvas.offsetHeight/7,0,"./TerminalHP.png")
+TerminalHP.sourceImage.width = 100;
+TerminalHP.spriteWidth = 480;
+TerminalHP.spriteHeight = 240;
+
 
 
 Terminal.Position = new Vector2(canvas.offsetWidth/2 - Terminal.sourceImage.width/2, canvas.offsetHeight/2-Terminal.sourceImage.height/2);
 for(let eb = 0; eb < EnergyBalls.length; eb++)
 {
-    EnergyBalls[eb] = new gameObject(100, 100,1,"./EnergyBall.png");
+    EnergyBalls[eb] = new gameObject(300, canvas.getBoundingClientRect().bottom-50,1,"./EnergyBall.png");
     //EnergyBalls[eb].Position = new Vector2(2,2);
     EnergyBalls[eb].spriteWidth = 480;
     EnergyBalls[eb].spriteHeight = 480;
     EnergyBalls[eb].sourceImage.width = 24;
     EnergyBalls[eb].sourceImage.height = 24;
-
-    console.debug(EnergyBalls[eb]);
 }
 
 let enemies = [];
 
-enemies.length = 20;
+enemies.length = 100;
 for(let p = 0; p < enemies.length; p++)
 {
-    if(p/3> 2)
+    if(p*Math.random() > Math.random()*40)
     {
         enemies[p] =  new Enemey(0,0 ,false,"FragClust.png");
-        enemies[p].Position = new Vector2(1+32*p,1+32*p );
-    }else if(p/2 > 1)
+        enemies[p].Position = new Vector2(1-32*p,1-32*p );
+    }else if(p*Math.random() > Math.random()*6)
     {
         enemies[p] =  new Enemey(0,0 ,false,"CorrupCell.png");
-        enemies[p].Position = new Vector2(1+32*p,1+32*p );
+        enemies[p].Position = new Vector2(1-32*p,1-32*p );
     }else{
         enemies[p] =  new Enemey(0,0 ,false,"MemLeak.png");
-        enemies[p].Position = new Vector2(1+32*p,1+32*p );
+        enemies[p].Position = new Vector2(1-32*p,1-32*p );
     }
 
 }
@@ -100,8 +111,13 @@ let date = new Date();
 let elapsedTime = 0;
 
 // random generation
-
+//game state numeral
+//0 start
+//1 running
+//2 game over
+//3 main Menu
 //innit
+let GAMESTATE = 0;
 //sets up all or stuff for game
 Input();
 gameLoop();
