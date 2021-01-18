@@ -1,117 +1,104 @@
-function Input(){
+function Input() {
     //input
-    canvas.addEventListener("mousedown", (mouse)=>{
+    canvas.addEventListener("mousedown", (mouse) => {
         mButtons[mouse.button] = true;
-        if(touches < 2) {
+        if (touches < 2) {
             touches += 1;
         }
     });
-    canvas.addEventListener("mouseup", (mouse)=>{
+    canvas.addEventListener("mouseup", (mouse) => {
         mButtons[mouse.button] = false;
-        if(touches != 0) {
+        if (touches != 0) {
             touches -= 1;
         }
     });
-    canvas.addEventListener("mousemove", (axis)=>{
-        
-       mAxis = axis;
-       mouseObject.Position = mAxis;
-       
-        
+    canvas.addEventListener("mousemove", (axis) => {
+
+        mAxis = axis;
+        mouseObject.Position = mAxis;
+
+
     });
 
-    window.addEventListener("touchstart", (touch)=>{
+    window.addEventListener("touchstart", (touch) => {
         //touch.preventDefault();
-console.log(touch.touches.length);
-            for(let i = 0; i < touch.touches.length; i ++)
-            {
-                TCHES[i] = true;
-                console.log(TCHES[i])
-            }
-
-
-
-    if(touch === true)
-    {
-        touchObj = touch.touches[0];
-        mouseObject.Position = touchObj.Position;
-
-        if(touches != 2)
-        {
-            touches +=1;
+        console.log(touch.touches.length);
+        for (let i = 0; i < touch.touches.length; i++) {
+            TCHES[i] = true;
+            console.log(TCHES[i])
         }
 
-    }
+
+        if (touch === true) {
+            touchObj = touch.touches[0];
+            mouseObject.Position = touchObj.Position;
+
+            if (touches != 2) {
+                touches += 1;
+            }
+
+        }
     });
 
 
-    canvas.addEventListener("touchmove", (touchMove)=>{
+    canvas.addEventListener("touchmove", (touchMove) => {
 
-    touchMove.preventDefault();
-    //getComputedStyle(canvas).left;
-    var cRct = canvas.getBoundingClientRect();
+        touchMove.preventDefault();
+        //getComputedStyle(canvas).left;
+        var cRct = canvas.getBoundingClientRect();
 
 
-    let tPos = touchMove.touches[0];
-    console.log(tPos);
+        let tPos = touchMove.touches[0];
+        console.log(tPos);
 
-    let AR = canvas.offsetHeight/canvas.offsetWidth;
+        let AR = canvas.offsetHeight / canvas.offsetWidth;
 
         mAxis = new Vector2(touchMove.touches[0].pageX, (touchMove.touches[0].pageY));
 
         console.log(mAxis.x);
-    mouseObject.Position = mAxis;
-    touchObj.Position = mouseObject.Position;
+        mouseObject.Position = mAxis;
+        touchObj.Position = mouseObject.Position;
 
     });
 
-    window.addEventListener("touchend", (touch)=>{
+    window.addEventListener("touchend", (touch) => {
         touch.preventDefault();
 
-        if(TCHES[0] == true)
-        {
+        if (TCHES[0] == true) {
             TCHES[0] = false;
         }
-        if(TCHES[1] == true)
-        {
+        if (TCHES[1] == true) {
             TCHES[1] = false;
         }
-        if(TCHES[2] == true)
-        {
+        if (TCHES[2] == true) {
             TCHES[2] = false;
         }
 
-        if(touch === true)
-        {
+        if (touch === true) {
             touch.preventDefault();
-            if(touches != 0)
-            {
-                touches -=1;
+            if (touches != 0) {
+                touches -= 1;
 
             }
         }
     });
 
-    window.addEventListener('keyup',(input)=>{
+    window.addEventListener('keyup', (input) => {
 
-            if(keys[input.keyCode] == true)
-            {
-                keys[input.keyCode] = false;
-            }
-
+        if (keys[input.keyCode] == true) {
+            keys[input.keyCode] = false;
+        }
 
 
     });
 
-    window.addEventListener('keydown',(input)=>{
-        if(keys[input.keyCode] != true)
-        {
+    window.addEventListener('keydown', (input) => {
+        if (keys[input.keyCode] != true) {
             keys[input.keyCode] = true;
         }
 
 
     });
-
 
 
 }

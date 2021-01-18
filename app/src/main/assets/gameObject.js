@@ -1,30 +1,29 @@
-class gameObject{
-    
-constructor(xpos,ypos,canMove,sourceImage)
-{
-    //game objects
-    //this .positon
-    this.Position =  new Vector2(xpos,ypos);
-    //is the gameobject a static gameobject
-    this.canMove = canMove;
-    //image of the game object
-    this.sourceImage = new Image(64,64);
-    this.sourceImage.src = sourceImage;
-    //needing implementing in the constructor
-    this.spriteOriginX = 0;
-    this.spriteOriginY = 0;
-    this.spriteWidth = 64;
-    this.spriteHeight = 64;
-    this.Velocity = new Vector2(0,0);
-    this.objectAnimTime = 0;
-    this.TargetObj = 0;
+class gameObject {
 
-}
+    constructor(xpos, ypos, canMove, sourceImage) {
+        //game objects
+        //this .positon
+        this.Position = new Vector2(xpos, ypos);
+        //is the gameobject a static gameobject
+        this.canMove = canMove;
+        //image of the game object
+        this.sourceImage = new Image(64, 64);
+        this.sourceImage.src = sourceImage;
+        //needing implementing in the constructor
+        this.spriteOriginX = 0;
+        this.spriteOriginY = 0;
+        this.spriteWidth = 64;
+        this.spriteHeight = 64;
+        this.Velocity = new Vector2(0, 0);
+        this.objectAnimTime = 0;
+        this.TargetObj = 0;
+
+    }
+
     colCheck(shapeA, shapeB) {
         // get the vectors to check against
-
-        if(shapeA == Terminal)
-        {
+        //check varying objects in game not optimal way but it was applicable for prototype.
+        if (shapeA == Terminal) {
             var vX = (shapeA.Position.x + (shapeA.spriteWidth / 6)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
                 vY = (shapeA.Position.y + (shapeA.spriteHeight / 8)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
                 // add the half widths and half heights of the objects
@@ -56,7 +55,7 @@ constructor(xpos,ypos,canMove,sourceImage)
                 }
             }
             return colDir;
-        }else{
+        } else {
             var vX = (shapeA.Position.x + (shapeA.spriteWidth / 4)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
                 vY = (shapeA.Position.y + (shapeA.spriteHeight / 4)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
                 // add the half widths and half heights of the objects
@@ -93,49 +92,43 @@ constructor(xpos,ypos,canMove,sourceImage)
 
     }
 
-    animationUpdate(spriteHeight, spriteWidth,cellCount)
-    {
+    animationUpdate(spriteHeight, spriteWidth, cellCount) {
 
         //set the sprite row location 1 2 3 4 or in compute logic 0 1 2 3
         this.spriteOriginY = spriteHeight;
 
         //moving the cell location to the next cell in the animation
-        this.spriteOriginX +=spriteWidth;
+        this.spriteOriginX += spriteWidth;
         //if the cell location is  greater than the spritesheet cell size reset back to first cell
-        if(this.spriteOriginX > spriteWidth*cellCount)
-        {
+        if (this.spriteOriginX > spriteWidth * cellCount) {
             this.spriteOriginX = 0;
         }
     }
 
-    update(){
-    if(this.TargetObj != 0)
-    {
-        this.Position = new Vector2(this.Position.x +this.Velocity.x * 5,this.Position.y +this.Velocity.y * 20);
-    }else if(this != player)
-    {
-        this.objectAnimTime+=1;
-        if(this.Velocity.x > .8)
-        {
-            this.Velocity.x = .8;
+    update() {
+        if (this.TargetObj != 0) {
+            //update the object with needed data
+            this.Position = new Vector2(this.Position.x + this.Velocity.x * 5, this.Position.y + this.Velocity.y * 20);
+        } else if (this != player) {
+            this.objectAnimTime += 1;
+            if (this.Velocity.x > .8) {
+                this.Velocity.x = .8;
+            }
+            if (this.Velocity.y > .8) {
+                this.Velocity.y = .8;
+            }
         }
-        if(this.Velocity.y > .8)
-        {
-            this.Velocity.y = .8;
+
+        this.Position = new Vector2(this.Position.x + this.Velocity.x, this.Position.y + this.Velocity.y);
+        //animation time exceeds max then reset it
+        if (this.objectAnimTime === 4) {
+            this.animationUpdate(0, 64, 9);
+            this.objectAnimTime = 0;
         }
-    }
 
-    this.Position = new Vector2(this.Position.x +this.Velocity.x,this.Position.y +this.Velocity.y);
-    if(this.objectAnimTime ===4)
-    {
-        this.animationUpdate(0,64,9);
-        this.objectAnimTime = 0;
-    }
-
-    this.draw(ctx);
+        this.draw(ctx);
 
     }
-
 
 
     draw(ctx) {
@@ -147,7 +140,7 @@ constructor(xpos,ypos,canMove,sourceImage)
         //100 is the origin height of the sprite to draw from the imagesource
         //450 is the sprite width
         //450 is the sprite height
-        ctx.drawImage(this.sourceImage,this.spriteOriginX, this.spriteOriginY, this.spriteWidth, this.spriteHeight, this.Position.x, this.Position.y, this.sourceImage.width, this.sourceImage.height);
+        ctx.drawImage(this.sourceImage, this.spriteOriginX, this.spriteOriginY, this.spriteWidth, this.spriteHeight, this.Position.x, this.Position.y, this.sourceImage.width, this.sourceImage.height);
 
     }
 }

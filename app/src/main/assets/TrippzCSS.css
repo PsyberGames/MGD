@@ -4,8 +4,7 @@ body{
 }
 canvas{
     position:absolute;
-    /* width: 100%; */
-    /* height: 100%; */
 }
+
 
 canvas#gameCanvas {}
