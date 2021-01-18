@@ -31,6 +31,7 @@ class camera {
 
     update() {
         //running
+
         //clear render space for new render
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
