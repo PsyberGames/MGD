@@ -20,19 +20,15 @@ class gameObject {
 
     }
 
-    colCheck(shapeA, shapeB) {
-        // get the vectors to check against
-        //check varying objects in game not optimal way but it was applicable for prototype.
-        if (shapeA == Terminal) {
+    colCheck(shapeA, shapeB) {// get the vectors to check against.
+        if (shapeA == Terminal) {//check varying objects in game not optimal way but it was applicable for prototype.
             var vX = (shapeA.Position.x + (shapeA.spriteWidth / 6)) - (shapeB.Position.x + (shapeB.spriteWidth / 4)),
                 vY = (shapeA.Position.y + (shapeA.spriteHeight / 8)) - (shapeB.Position.y + (shapeB.spriteHeight / 4)),
                 // add the half widths and half heights of the objects
                 hWidths = (shapeA.spriteWidth / 6) + (shapeB.spriteWidth / 4),
                 hHeights = (shapeA.spriteHeight / 8) + (shapeB.spriteHeight / 4),
                 colDir = null;
-
-            // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
-            if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
+            if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {// if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
                 // figures out on which side we are colliding (top, bottom, left, or right)
                 var oX = hWidths - Math.abs(vX),
                     oY = hHeights - Math.abs(vY);
@@ -118,19 +114,14 @@ class gameObject {
                 this.Velocity.y = .8;
             }
         }
-
         this.Position = new Vector2(this.Position.x + this.Velocity.x, this.Position.y + this.Velocity.y);
         //animation time exceeds max then reset it
         if (this.objectAnimTime === 4) {
             this.animationUpdate(0, 64, 9);
             this.objectAnimTime = 0;
         }
-
         this.draw(ctx);
-
     }
-
-
     draw(ctx) {
         //ctx.drawImage(this.sourceImage,this.Position.x,this.Position.y);
         //ctx.draw(this.sourceImage,50,50,this.Position.x,this.Position.y,50,50);

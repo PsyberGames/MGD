@@ -4,8 +4,6 @@ class Player extends gameObject {
         this.a = 0;
         this.highscore = 0;
         this.healthpool = 100;
-
-
     }
 
 }

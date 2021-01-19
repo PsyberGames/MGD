@@ -1,4 +1,3 @@
-var buttonArray = [];
 const canvas = document.getElementById("gameCanvas");
 const _Audio = document.getElementById("SFX");
 
@@ -30,11 +29,14 @@ boundRight.spriteHeight = canvas.clientHeight * 2;
 
 //UI TEXT
 
-const hSText = new TextObj("1", "2", canvas.getBoundingClientRect().left + 78, canvas.getBoundingClientRect().top + 48);
-const tHpText = new TextObj("Terminals Signal Health :", "", canvas.getBoundingClientRect().width / 2 - 220, canvas.getBoundingClientRect().bottom - 48);
+const hSText = new TextObj("1", "2",
+    canvas.getBoundingClientRect().left + 78, canvas.getBoundingClientRect().top + 48);
+
+const tHpText = new TextObj("Terminals Signal Health :", "",
+    canvas.getBoundingClientRect().width / 2 - 220, canvas.getBoundingClientRect().bottom - 48);
 
 //UI BUTTONS NOT ANY LONGER IMPLEMENTED SWITCH TO TWIN STICK
-
+var buttonArray = [];
 var upBUTTON = new button("./UpButton.png", 0 + 150, 500);
 buttonArray.push(upBUTTON);
 var dnBUTTON = new button("./UpButton.png", 0 + 150, 600);
@@ -65,17 +67,30 @@ let dXYpos2 = new Vector2(0, 0);
 
 //GameObjects
 
-let BG = new gameObject(0, 0, 0, "./BGDIGI.png");
-let player = new Player(canvas.clientWidth / 2, canvas.clientHeight / 2, false, "MGDcharacter.png");
-let touchObj = new gameObject(0, 0, 1, "./ControlStick.png");
+let BG = new gameObject(0, 0,
+    0, "./BGDIGI.png");
+
+let player = new Player(canvas.clientWidth / 2,
+    canvas.clientHeight / 2, false, "MGDcharacter.png");
+
+let touchObj = new gameObject(0, 0,
+    1, "./ControlStick.png");
+
 let Camera = new camera(0, 0, 70);
-var mouseObject = new gameObject(mAxis.x, mAxis.y, 1, "./UpButton.png");
+
+var mouseObject = new gameObject(mAxis.x, mAxis.y,
+    1, "./UpButton.png");
+
 mouseObject.sourceImage.width = 16;
+
 mouseObject.sourceImage.height = 16;
 let EnergyBalls = [];
 EnergyBalls.length = 1000;
 for (let eb = 0; eb < EnergyBalls.length; eb++) {
-    EnergyBalls[eb] = new gameObject(300, canvas.getBoundingClientRect().bottom - 50, 1, "./EnergyBall.png");
+
+    EnergyBalls[eb] = new gameObject(300, canvas.getBoundingClientRect().bottom - 50,
+        1, "./EnergyBall.png");
+
     //EnergyBalls[eb].Position = new Vector2(2,2);
     EnergyBalls[eb].spriteWidth = 128;
     EnergyBalls[eb].spriteHeight = 128;
@@ -89,12 +104,13 @@ Terminal.sourceImage.width = 64;
 Terminal.sourceImage.height = 64;
 Terminal.spriteWidth = 128;
 Terminal.spriteHeight = 128;
-let TerminalHP = new gameObject(canvas.offsetHeight / 2, canvas.getBoundingClientRect().bottom - canvas.offsetHeight / 7, 0, "./TerminalHP.png")
+let TerminalHP = new gameObject(canvas.offsetHeight / 2,
+    canvas.getBoundingClientRect().bottom - canvas.offsetHeight / 7, 0, "./TerminalHP.png");
 TerminalHP.sourceImage.width = 100;
 TerminalHP.spriteWidth = 480;
 TerminalHP.spriteHeight = 240;
-Terminal.Position = new Vector2(canvas.offsetWidth / 2 - Terminal.sourceImage.width / 2, canvas.offsetHeight / 2 - Terminal.sourceImage.height / 2);
-
+Terminal.Position = new Vector2(canvas.offsetWidth / 2 - Terminal.sourceImage.width / 2,
+    canvas.offsetHeight / 2 - Terminal.sourceImage.height / 2);
 
 let enemies = [];
 enemies.length = 100;
@@ -109,7 +125,6 @@ for (let p = 0; p < enemies.length; p++) {
         enemies[p] = new Enemey(0, 0, false, "MemLeak.png");
         enemies[p].Position = new Vector2(1 - 32 * p, 1 - 32 * p);
     }
-
 }
 //animation variables
 let cellPlaceNumber = 0;

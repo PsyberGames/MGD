@@ -13,11 +13,8 @@ function Input() {
         }
     });
     canvas.addEventListener("mousemove", (axis) => {
-
         mAxis = axis;
         mouseObject.Position = mAxis;
-
-
     });
 
     window.addEventListener("touchstart", (touch) => {
@@ -27,16 +24,12 @@ function Input() {
             TCHES[i] = true;
             console.log(TCHES[i])
         }
-
-
         if (touch === true) {
             touchObj = touch.touches[0];
             mouseObject.Position = touchObj.Position;
-
             if (touches != 2) {
                 touches += 1;
             }
-
         }
     });
 

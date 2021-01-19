@@ -3,8 +3,6 @@ class Enemey extends gameObject {
         super(xpos, ypos, canMove, sourceimgage);
         var futureVe = new Vector2(0, 0);
         var distance = 0;
-
-
         Enemey.prototype.AI = function () {
             let rect = canvas.getBoundingClientRect();
             let refactPos1 = this.Position.x - rect.left;
@@ -14,12 +12,7 @@ class Enemey extends gameObject {
             let newPos1 = new Vector2(refactPos1, refactPos2);
             let newPos2 = new Vector2(refactPos21, refactPos22);
             this.distance = (newPos1.x * newPos1.x - newPos2.x * newPos2.x) + (newPos1.y * newPos1.y - newPos2.y * newPos2.y) / (newPos1.x * newPos1.x - newPos2.x * newPos2.x) + (newPos1.y * newPos1.y - newPos2.y * newPos2.y);
-
-            //console.log(Math.abs(this.distance/1000) );
-
-
             if (newPos1.x < newPos2.x) {
-
                 if (newPos1.y < newPos2.y) {
                     this.futureVe = new Vector2(Math.random() + 1 * 2, 1 * 2);
                     //console.log("enemy is above player");
@@ -41,13 +34,11 @@ class Enemey extends gameObject {
             if (this.Position.y < Terminal.Position.y - 10) {
                 if (Math.abs(this.distance / 1000) > 1.5) {
                     this.Velocity = this.futureVe;
-
                     //console.log("not reached player");
                 }
             } else {
                 if (Math.abs(this.distance / 1000) > 1.5) {
                     this.Velocity = this.futureVe;
-
                     //console.log("not reached player");
                 }
                 if (Math.abs(this.distance / 1000) < 1) {
@@ -63,16 +54,9 @@ class Enemey extends gameObject {
 
                         this.Position = new Vector2(canvas.offsetWidth + 100, canvas.offsetHeight + 100);
                     }
-
-                    //console.log("reach the player ");
-                    //console.log(newPos2.x);
                 }
             }
-
-
         };
 
     }
-
-
 }

@@ -40,7 +40,6 @@ function gameLoop() {
 
             break;
         case 1://RUNNING
-
             hSText.message = "Highscore : ";
             hSText.var = player.highscore.toString();
             tHpText.var = player.healthpool.toFixed().toString() + "/" + "100";
@@ -356,7 +355,7 @@ function gameLoop() {
             }
 
             for (let e = 0; e < enemies.length; e++) {
-                var TerminalCollider = player.colCheck(Terminal, enemies[e]);
+                var TerminalCollider = Terminal.colCheck(Terminal, enemies[e]);
                 if (TerminalCollider === "l" || TerminalCollider === "r") {
                     terminalHit();
 
@@ -370,16 +369,12 @@ function gameLoop() {
             }
             var collider = player.colCheck(player, boundTop);
             if (collider === "l" || collider === "r") {
-                //playercollision
-                //Axis.x = 0;
-                //moveX = 0;
+
             } else if (collider === "b") {
                 if (Axis.y < 0) {
                     Axis.y = 0;
                     moveY = 0;
                 }
-
-
             }
             collider = player.colCheck(player, boundBot);
             if (collider === "l" || collider === "r") {
@@ -390,8 +385,6 @@ function gameLoop() {
                     Axis.y = 0;
                     moveY = 0;
                 }
-
-
             }
             collider = player.colCheck(player, boundLeft);
             if (collider === "l" || collider === "r") {
@@ -402,8 +395,6 @@ function gameLoop() {
                 }
 
             } else if (collider === "t") {
-
-
             }
             collider = player.colCheck(player, boundRight);
             if (collider === "l" || collider === "r") {
@@ -414,10 +405,7 @@ function gameLoop() {
                 }
 
             } else if (collider === "t") {
-
-
             }
-
 
             if (moving != 0) {
                 if (time === 4) {
@@ -433,25 +421,17 @@ function gameLoop() {
                 time = 0;
             }
             for (let p = 0; p < enemies.length; p++) {
-
-
                 enemies[p].AI();
                 enemies[p].update();
                 if (time === 4) {
                     for (let e = 0; e < enemies.length; e++) {
                         enemies[e].animationUpdate(64, 64, 9) * elapsedTime;
-
                         time = 0;
                     }
-
                 }
-
             }
-
-
             Camera.x = player.Position.x;
             Camera.y = player.Position.y;
-
             Camera.update();
             window.requestAnimationFrame(gameLoop);
             break;
